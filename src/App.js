@@ -1,32 +1,26 @@
-import { createStore, applyMiddleware } from "redux";
-import createSagaMiddleware from "redux-saga";
-
+import { connect, useSelector } from "react-redux";
 import "./App.css";
 import Counter from "./components/counter";
-import { DECREMENT, INCREMENT, INCREMENT_ASYNC, reducer } from "./reducer";
-import rootSaga from "./sagas";
+import { DECREMENT, INCREMENT, INCREMENT_ASYNC } from "./redux/reducer";
 
-const sagaMiddleware = createSagaMiddleware();
-const store = createStore(reducer, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(rootSaga);
+function App(props) {
+  const value = useSelector((state) => state);
+  const { dispatch } = props;
 
-const action = (type) => store.dispatch({ type });
-
-function App() {
   return (
     <div className="App">
       <header className="App-header">
         <h1>Redux saga demo</h1>
 
         <Counter
-          value={store.getState()}
-          onIncrement={() => action(INCREMENT)}
-          onDecrement={() => action(DECREMENT)}
-          onIncrementAsync={() => action(INCREMENT_ASYNC)}
+          value={value}
+          onIncrement={() => dispatch({ type: INCREMENT })}
+          onDecrement={() => dispatch({ type: DECREMENT })}
+          onIncrementAsync={() => dispatch({ type: INCREMENT_ASYNC })}
         />
       </header>
     </div>
   );
 }
 
-export default App;
+export default connect()(App);

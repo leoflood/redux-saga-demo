@@ -2,8 +2,6 @@ export const INCREMENT = "INCREMENT";
 export const DECREMENT = "DECREMENT";
 export const INCREMENT_ASYNC = "INCREMENT_ASYNC";
 export function reducer(state = 0, action) {
-  console.log(state);
-
   switch (action.type) {
     case INCREMENT:
       return state + 1;
