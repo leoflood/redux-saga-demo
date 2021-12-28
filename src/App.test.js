@@ -3,6 +3,6 @@ import App from "./App";
 
 test("renders learn react link", () => {
   render(<App />);
-  const linkElement = screen.getByText(/Redux saga tutorial/i);
+  const linkElement = screen.getByText(/Redux saga demo/i);
   expect(linkElement).toBeInTheDocument();
 });

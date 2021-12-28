@@ -1,10 +1,10 @@
 import { connect, useSelector } from "react-redux";
 import "./App.css";
 import Counter from "./components/counter";
-import { DECREMENT, INCREMENT, INCREMENT_ASYNC } from "./redux/reducer";
+import { decrement, increment, incrementAsync } from "./redux/reducer";
 
 function App(props) {
-  const value = useSelector((state) => state);
+  const count = useSelector((state) => state.count);
   const { dispatch } = props;
 
   return (
@@ -13,10 +13,10 @@ function App(props) {
         <h1>Redux saga demo</h1>
 
         <Counter
-          value={value}
-          onIncrement={() => dispatch({ type: INCREMENT })}
-          onDecrement={() => dispatch({ type: DECREMENT })}
-          onIncrementAsync={() => dispatch({ type: INCREMENT_ASYNC })}
+          value={count}
+          onIncrement={() => dispatch(increment())}
+          onDecrement={() => dispatch(decrement())}
+          onIncrementAsync={() => dispatch(incrementAsync())}
         />
       </header>
     </div>
